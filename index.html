@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="проектная работа 4 Яны Замятиной на Яндекс.Практикуме">
+  <meta name="keywords" content="путешествие, Жак-ив, Кусто, Россия">
+  <meta name="author" content="Яна Замятина">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место Россия</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/header-logo.svg" alt="Mesto Russia">
+    </header>
+    <main class="main">
+      <section class="profile">
+        <img class="profile__avatar" src="./images/profile-cousteau.jpg" alt="Фото Жака-Ива Кусто">
+        <div class="profile__info">
+          <h1 class="profile__username">Жак-Ив Кусто</h1>
+          <button class="profile__button-edit" type="button"><img class="profile__icon-pen" src="./images/edit-button.svg" alt="Редактировать"></button>
+          <p class="profile__occupation">Исследователь океана</p>
+        </div>
+        <button class="profile__button-add" type="button"><img class="profile__icon-plus" src="./images/add-button.svg" alt="Добавить"></button>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img class="element__image" src="./images/element-petra.jpg" alt="Фотография Петры">
+          <div class="element__info">
+            <h2 class="element__title">Петра</h2>
+            <button class="element__button-like"><img src="./images/like-button.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./images/element-grand-canyon.jpg" alt="Фотография Петры">
+          <div class="element__info">
+            <h2 class="element__title">Гранд-Каньон</h2>
+            <button class="element__button-like"><img src="./images/like-button.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./images/element-yellowstone-park.jpg" alt="Фотография Петры">
+          <div class="element__info">
+            <h2 class="element__title">Йеллоустон</h2>
+            <button class="element__button-like"><img src="./images/like-button.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./images/element-niagara-falls.jpg" alt="Фотография Петры">
+          <div class="element__info">
+            <h2 class="element__title">Ниагарский водопад</h2>
+            <button class="element__button-like"><img src="./images/like-button.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./images/element-yosemite-falls.jpg" alt="Фотография Петры">
+          <div class="element__info">
+            <h2 class="element__title">Йосемитcкий водопад</h2>
+            <button class="element__button-like"><img src="./images/like-button.svg"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./images/element-victoria-falls.jpg" alt="Фотография Петры">
+          <div class="element__info">
+            <h2 class="element__title">Водопад Виктория</h2>
+            <button class="element__button-like"><img src="./images/like-button.svg"></button>
+          </div>
+        </div>
+      </section>
+      <section class="popup">
+        <div class="popup__container">
+          <button class="popup__button-close" type="button" alt="Закрыть"><img class="popup__icon-cross" src="./images/close-button.svg" alt="Закрыть"></button>
+          <form class="popup__form">
+            <h3 class="popup__header">Редактировать профиль</h3>
+            <input class="popup__input popup__input_type_username" type="text"  name="username" required>
+            <input class="popup__input popup__input_type_occupation" type="text" name="occupation" required>
+            <button class="popup__button-save" type="submit">Сохранить</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy;2020 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>
