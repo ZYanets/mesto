@@ -10,4 +10,4 @@
 * Методология БЭМ
 * JavaScript
 
-* [Ссылка на GitHub Pages](https://github.com/ZYanets/mesto.git)
+* [Ссылка на GitHub Pages](https://zyanets.github.io/mesto/)
