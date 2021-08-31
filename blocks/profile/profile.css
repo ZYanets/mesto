@@ -6,7 +6,13 @@
   align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
+  .profile {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 620px) {
   .profile {
     max-width: 282px;
     flex-direction: column;

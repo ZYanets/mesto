@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 620px){
   .profile__occupation {
     padding-left: 26px;
     font-size: 14px;

@@ -7,10 +7,17 @@
   align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
+  .profile__info {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 620px) {
   .profile__info {
     margin-top: 26px;
     margin-bottom: 33px;
+    margin-right: 0;
     max-width: 282px;
     margin-left: 0;
     grid-template-columns: 220px 1fr;
