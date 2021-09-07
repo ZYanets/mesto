@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: 'Петра',
-    link: './images/element-petra.jpg'
-  },
-  {
-    name: 'Гранд-Каньон',
-    link: './images/element-grand-canyon.jpg'
-  },
-  {
-    name: 'Йеллоустон',
-    link: './images/element-yellowstone-park.jpg'
-  },
-  {
-    name: 'Ниагарский водопад',
-    link: './images/element-niagara-falls.jpg'
-  },
-  {
-    name: 'Йосемитcкий водопад',
-    link: './images/element-yosemite-falls.jpg'
-  },
-  {
-    name: 'Водопад Виктория',
-    link: './images/element-victoria-falls.jpg'
-  }
-];
-
 /* ---------------------- Блок Профиль ----------------------*/
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const editProfileOpen = document.querySelector('.profile__button-edit');
@@ -66,14 +39,16 @@ const saveProfile = (evt) => {
 /* ---------------------- Функция: создать карточку----------------------*/
 const createCard = (card) => {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  const elementImage = cardElement.querySelector('.element__image');
+
   cardElement.querySelector('.element__title').textContent = card.name;
-  cardElement.querySelector('.element__image').src = card.link;
-  cardElement.querySelector('.element__image').alt = card.name;
+  elementImage.src = card.link;
+  elementImage.alt = card.name;
 
   /* ---------------------- Отследить действия внутри карточки ----------------------*/
   cardElement.querySelector('.element__button-like').addEventListener('click', likeCard);
   cardElement.querySelector('.element__button-delete').addEventListener('click', deleteCard);
-  cardElement.querySelector('.element__image').addEventListener('click', () => viewCard(card));
+  elementImage.addEventListener('click', () => viewCard(card));
 
   return cardElement;
 };
@@ -101,9 +76,11 @@ const saveCard = (evt) => {
 
 /* ---------------------- Функция: просмотреть карточку----------------------*/
 const viewCard = (card) => {
-  popupViewCard.querySelector('.popup__view-card-photo').src = card.link;
+  const viewCardPhoto = popupViewCard.querySelector('.popup__view-card-photo');
+
   popupViewCard.querySelector('.popup__view-card-caption').textContent = card.name;
-  popupViewCard.querySelector('.popup__view-card-photo').alt = card.name;
+  viewCardPhoto.src = card.link;
+  viewCardPhoto.alt = card.name;
   openPopup(popupViewCard);
 };
 

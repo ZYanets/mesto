@@ -5,4 +5,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.element__image:hover {
+  opacity: .8;
+  transition: opacity .5s linear;
+  transition-delay: 0.3s;
 }
