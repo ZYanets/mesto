@@ -9,5 +9,6 @@
 * Медиазапросы
 * Методология БЭМ
 * JavaScript
+* Валидация форм с JavaScript
 
 * [Ссылка на GitHub Pages](https://zyanets.github.io/mesto/)

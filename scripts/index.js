@@ -24,6 +24,20 @@ const cardTemplate = document.querySelector('#element-template').content;
 const popupViewCard = document.querySelector('.popup_type_view-card');
 const viewCardClose = document.querySelector('.popup__button-close_type_view-card');
 
+/* ---------------------- Объекты настроек для валидации ----------------------*/
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+/* ---------------------- Массивы попапа и контейнеров ----------------------*/
+const popupList = Array.from(document.querySelectorAll('.popup'));
+const containerList = Array.from(document.querySelectorAll('.popup__container'));
+
 /* ---------------------- Функция: открыть и закрыть форму ----------------------*/
 const openPopup = (popup) => popup.classList.add('popup_opened');
 const closePopup = (popup) => popup.classList.remove('popup_opened');
@@ -94,6 +108,16 @@ const likeCard = (evt) => {
   evt.target.closest('.element__button-like').classList.toggle('element__button-like_active');
 };
 
+/* ---------------------- Функция: закрыть при нажатии на Esc ----------------------*/
+const keyHandler = (evt) => {
+  if (evt.key === 'Escape') {
+    popupList.forEach((popup) => {
+      closePopup(popup);
+    });
+    evt.target.removeEventListener('keydown', keyHandler);
+  };
+};
+
 /* ---------------------- Отследить действия ----------------------*/
 editProfileOpen.addEventListener('click', () => {
   usernameInput.value = username.textContent;
@@ -112,3 +136,20 @@ viewCardClose.addEventListener('click', () => closePopup(popupViewCard));
 initialCards.forEach((element) => {
   addCard(element);
 });
+
+document.addEventListener('keydown', keyHandler);
+
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', () => {
+    closePopup(popup);
+  });
+});
+
+containerList.forEach((container) => {
+  container.addEventListener('mousedown', (evt) => {
+    evt.stopPropagation();
+  });
+});
+
+/* ---------------------- Включить валидацию ----------------------*/
+enableValidation(validationConfig);
