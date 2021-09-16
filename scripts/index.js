@@ -1,3 +1,6 @@
+/* ---------------------- Попапы ----------------------*/
+const popups = document.querySelectorAll('.popup')
+
 /* ---------------------- Блок Профиль ----------------------*/
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const editProfileOpen = document.querySelector('.profile__button-edit');
@@ -23,6 +26,8 @@ const cardTemplate = document.querySelector('#element-template').content;
 /* ---------------------- Просмотр карточки ----------------------*/
 const popupViewCard = document.querySelector('.popup_type_view-card');
 const viewCardClose = document.querySelector('.popup__button-close_type_view-card');
+const viewCardPhoto = popupViewCard.querySelector('.popup__view-card-photo');
+const viewCardCaption = popupViewCard.querySelector('.popup__view-card-caption');
 
 /* ---------------------- Объекты настроек для валидации ----------------------*/
 const validationConfig = {
@@ -34,13 +39,16 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-/* ---------------------- Массивы попапа и контейнеров ----------------------*/
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const containerList = Array.from(document.querySelectorAll('.popup__container'));
-
 /* ---------------------- Функция: открыть и закрыть форму ----------------------*/
-const openPopup = (popup) => popup.classList.add('popup_opened');
-const closePopup = (popup) => popup.classList.remove('popup_opened');
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', keyHandler);
+};
+
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keyHandler);
+};
 
 /* ---------------------- Функция: сохранить введенные данные профиля----------------------*/
 const saveProfile = (evt) => {
@@ -76,23 +84,21 @@ const addCard = (card) => {
 const saveCard = (evt) => {
   evt.preventDefault();
 
-  const cardNameInput = document.querySelector('.popup__input_type_card-name').value;
-  const cardLinkInput = document.querySelector('.popup__input_type_card-link').value;
-
   addCard({
-    name: cardNameInput,
-    link: cardLinkInput,
+    name: cardNameInput.value,
+    link: cardLinkInput.value,
   });
 
   addCardForm.reset();
+
   closePopup(popupAddCard);
+  evt.target.querySelector('.popup__button').classList.add('popup__button_disabled');
+  evt.target.querySelector('.popup__button').disabled = true;
 };
 
 /* ---------------------- Функция: просмотреть карточку----------------------*/
 const viewCard = (card) => {
-  const viewCardPhoto = popupViewCard.querySelector('.popup__view-card-photo');
-
-  popupViewCard.querySelector('.popup__view-card-caption').textContent = card.name;
+  viewCardCaption.textContent = card.name;
   viewCardPhoto.src = card.link;
   viewCardPhoto.alt = card.name;
   openPopup(popupViewCard);
@@ -105,16 +111,14 @@ const deleteCard = (evt) => {
 
 /* ---------------------- Функция: поставить лайк ----------------------*/
 const likeCard = (evt) => {
-  evt.target.closest('.element__button-like').classList.toggle('element__button-like_active');
+  evt.target.classList.toggle('element__button-like_active');
 };
 
 /* ---------------------- Функция: закрыть при нажатии на Esc ----------------------*/
 const keyHandler = (evt) => {
   if (evt.key === 'Escape') {
-    popupList.forEach((popup) => {
-      closePopup(popup);
-    });
-    evt.target.removeEventListener('keydown', keyHandler);
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   };
 };
 
@@ -124,31 +128,24 @@ editProfileOpen.addEventListener('click', () => {
   occupationInput.value = occupation.textContent;
   openPopup(popupEditProfile);
 });
-editProfileClose.addEventListener('click', () => closePopup(popupEditProfile));
 editProfileForm.addEventListener('submit', saveProfile);
 
 addCardOpen.addEventListener('click', () => openPopup(popupAddCard));
-addCardClose.addEventListener('click', () => closePopup(popupAddCard));
 addCardForm.addEventListener('submit', saveCard);
-
-viewCardClose.addEventListener('click', () => closePopup(popupViewCard));
 
 initialCards.forEach((element) => {
   addCard(element);
 });
 
-document.addEventListener('keydown', keyHandler);
-
-popupList.forEach((popup) => {
-  popup.addEventListener('mousedown', () => {
-    closePopup(popup);
-  });
-});
-
-containerList.forEach((container) => {
-  container.addEventListener('mousedown', (evt) => {
-    evt.stopPropagation();
-  });
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup)
+    }
+  })
 });
 
 /* ---------------------- Включить валидацию ----------------------*/
