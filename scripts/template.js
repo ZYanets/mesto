@@ -24,3 +24,5 @@ const initialCards = [
     link: './images/element-victoria-falls.jpg'
   }
 ];
+
+export { initialCards }
