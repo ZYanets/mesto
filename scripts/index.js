@@ -1,6 +1,7 @@
+import { openPopup, closePopup } from './utils.js'
 import Card from './card.js'
 import FormValidator from './formValidator.js'
-import { initialCards } from './template.js'
+import { initialCards } from './initialCards.js'
 
 /* ---------------------- Попапы ----------------------*/
 const popups = document.querySelectorAll('.popup')
@@ -38,17 +39,6 @@ const validationConfig = {
 const editProfileValidator = new FormValidator(validationConfig, editProfileForm);
 const addCardValidator = new FormValidator(validationConfig, addCardForm);
 
-/* ---------------------- Функция: открыть и закрыть форму ----------------------*/
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', keyHandler);
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', keyHandler);
-};
-
 /* ---------------------- Функция: сохранить введенные данные профиля----------------------*/
 const saveProfile = (evt) => {
   evt.preventDefault();
@@ -59,13 +49,12 @@ const saveProfile = (evt) => {
 
 /* ---------------------- Функция: создать карточку----------------------*/
 const createCard = (data) => {
-  return new Card(data.name, data.link, '#element-template')
+  return new Card(data.name, data.link, '#element-template').generateCard();
 };
 
 /* ---------------------- Функция: добавить карточку----------------------*/
 const addCard = (card) => {
-  const cardElement = card.generateCard();
-  elementContainer.prepend(cardElement);
+  elementContainer.prepend(card);
 };
 
 /* ---------------------- Функция: сохранить введенные данные карточки----------------------*/
@@ -81,16 +70,7 @@ const saveCard = (evt) => {
   addCardForm.reset();
 
   closePopup(popupAddCard);
-  evt.target.querySelector('.popup__button').classList.add('popup__button_disabled');
-  evt.target.querySelector('.popup__button').disabled = true;
-};
-
-/* ---------------------- Функция: закрыть при нажатии на Esc ----------------------*/
-const keyHandler = (evt) => {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  };
+  addCardValidator.disableSubmitButton();
 };
 
 /* ---------------------- Отследить действия ----------------------*/

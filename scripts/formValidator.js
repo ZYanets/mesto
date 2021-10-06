@@ -47,7 +47,7 @@ class FormValidator {
   };
 
   /* Включение и выключение кнопки */
-  _disableSubmitButton() {
+  disableSubmitButton() {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.disabled = true;
   };
@@ -60,7 +60,7 @@ class FormValidator {
   /* Переключение состояния кнопки */
   _toggleButtonState() {
       if (this._hasInvalidInput(this._inputList) || this._hasNotInputValues(this._inputList)) {
-      this._disableSubmitButton(this._buttonElement, this._inactiveButtonClass);
+      this.disableSubmitButton(this._buttonElement, this._inactiveButtonClass);
     } else {
       this._enableSubmitButton(this._buttonElement, this._inactiveButtonClass);
     }

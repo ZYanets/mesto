@@ -1,9 +1,4 @@
-import { openPopup } from './index.js'
-
-/* ---------------------- Просмотр карточки ----------------------*/
-const popupViewCard = document.querySelector('.popup_type_view-card');
-const viewCardPhoto = popupViewCard.querySelector('.popup__view-card-photo');
-const viewCardCaption = popupViewCard.querySelector('.popup__view-card-caption');
+import { openPopup, popupViewCard, viewCardPhoto, viewCardCaption } from './utils.js'
 
 class Card {
 	constructor(name, link, template) {
@@ -31,8 +26,9 @@ class Card {
   }
 
 /* ---------------------- Функция: удалить карточку----------------------*/
-  _deleteCard(evt) {
-    evt.target.closest('.element').remove();
+  _deleteCard() {
+    this._element.remove();
+    this._element = null;
   }
 
 /* ---------------------- Функция: поставить лайк ----------------------*/
@@ -44,16 +40,17 @@ class Card {
 		this._element.querySelector('.element__image').addEventListener('click', () => {
 			this._viewCard();
 	  });
-    this._element.querySelector('.element__button-delete').addEventListener('click', this._deleteCard);
+    this._element.querySelector('.element__button-delete').addEventListener('click', () => {this._deleteCard()});
     this._element.querySelector('.element__button-like').addEventListener('click', this._likeCard);
   }
 
   generateCard() {
     this._element = this._getElement();
     this._setEventListeners();
+    const elementImage = this._element.querySelector('.element__image');
     this._element.querySelector('.element__title').textContent = this._name;
-    this._element.querySelector('.element__image').alt = this._name;
-    this._element.querySelector('.element__image').src = this._link;
+    elementImage.alt = this._name;
+    elementImage.src = this._link;
 
     return this._element;
   }
