@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
   constructor(config, form) {
     this._formElement = form;
     this._inputSelector = config.inputSelector;
@@ -19,8 +19,8 @@ class FormValidator {
 
   _hideInputError(inputElement, errorElement) {
     inputElement.classList.remove(this._inputErrorClass);
-    errorElement.textContent = '';
     errorElement.classList.remove(this._errorClass);
+    errorElement.textContent = '';
   };
 
   /* Проверка валидности */
@@ -85,5 +85,3 @@ class FormValidator {
     this._setEventListeners();
   };
 }
-
-export default FormValidator
