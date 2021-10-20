@@ -61,4 +61,5 @@ cardList.renderItems();
 editProfileOpen.addEventListener('click', setProfileData);
 addCardOpen.addEventListener('click', () => {
   popupWithFormCard.open();
+  addCardValidator.disableSubmitButton();
 })
