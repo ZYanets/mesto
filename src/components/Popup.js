@@ -3,7 +3,9 @@ export default class Popup {
     this._popupSelector = popupSelector
     this._popup = document.querySelector(this._popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
-  }
+
+    this._submitButton = this._popup.querySelector('.popup__button');
+}
 /* ---------------------- Функция: открыть форму ----------------------*/
   open() {
     this._popup.classList.add('popup_opened');

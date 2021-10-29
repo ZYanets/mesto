@@ -11,13 +11,15 @@ export default class FormValidator {
   }
 
   /* Включение и выключение ошибок */
-  _showInputError(inputElement, errorElement) {
+  _showInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._errorClass);
   };
 
-  _hideInputError(inputElement, errorElement) {
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
@@ -25,12 +27,10 @@ export default class FormValidator {
 
   /* Проверка валидности */
   _checkInputValidity(inputElement) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-
     if (!inputElement.validity.valid) {
-      this._showInputError(inputElement, errorElement);
+      this._showInputError(inputElement);
     } else {
-      this._hideInputError(inputElement, errorElement);
+      this._hideInputError(inputElement);
     }
   };
 
@@ -67,8 +67,8 @@ export default class FormValidator {
   };
 
   _setEventListeners() {
-    this._formElement.addEventListener('submit', (event) => {
-      event.preventDefault();
+      this._formElement.addEventListener('submit', (event) => {
+        event.preventDefault();
     });
 
       this._inputList.forEach(inputElement => {
