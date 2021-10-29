@@ -13,8 +13,8 @@ import { popupAvatar, avatar, changeAvatarOpen, avatarForm,
         popupAddCard, popupDeleteCard, addCardOpen, addCardForm,
         elementContainer, popupViewCard, validationConfig } from '../utils/constants.js'
 
-let userId = null;
-let myCard = null;
+let userId;
+let myCard;
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-29',
