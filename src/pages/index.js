@@ -56,6 +56,7 @@ const setProfileData = () => {
   const userData = userInfo.getUserInfo();
   usernameInput.value = userData.name;
   aboutInput.value = userData.about;
+  editProfileValidator.resetValidation();
   popupWithFormProfile.open();
 }
 
@@ -163,11 +164,13 @@ popupWithFormAvatar.setEventListeners();
 editProfileOpen.addEventListener('click', setProfileData);
 
 addCardOpen.addEventListener('click', () => {
+  addCardValidator.resetValidation();
   popupWithFormCard.open();
   addCardValidator.disableSubmitButton();
 });
 
 changeAvatarOpen.addEventListener('click', () => {
+  changeAvatarValidator.resetValidation();
   popupWithFormAvatar.open();
   changeAvatarValidator.disableSubmitButton();
 })
